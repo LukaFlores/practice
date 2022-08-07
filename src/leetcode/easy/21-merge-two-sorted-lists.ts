@@ -86,7 +86,6 @@ function start() {
   list1.append(4);
 
   list2.append(3);
-	return list1
   list2.append(4);
 
   console.log(mergeTwoLists(list1.head, list2.head));
