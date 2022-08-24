@@ -29,12 +29,10 @@
 //
 //
 
-
 function climbStairs(n: number): number {
 	const x = Math.pow(5, 0.5)
 	return parseInt(((Math.pow((1+x)/2, n+1) - Math.pow((1-x)/2, n+1))/x).toFixed(0))
 };
-
 
 
 console.log(climbStairs(1),  "| 1")
