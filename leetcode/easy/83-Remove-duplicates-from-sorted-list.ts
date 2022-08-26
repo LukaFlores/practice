@@ -36,7 +36,16 @@
 import { LinkedList, ListNode } from '../structures/list';
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
-  if (head === null) return null;
+  var current = head;
+
+  while (current && current.next) {
+    if (current.val === current.next.val) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+
   return head;
 }
 
@@ -50,3 +59,6 @@ function run(list: number[]) {
 
 console.log(run([1, 1, 2]), '[1,2]');
 console.log(run([1, 1, 2, 3, 3]), '[1,2,3]');
+console.log(run([1, 1, 2, 3, 3]), '[1,2,3]');
+console.log(run([1, 1, 2, 3, 3, 4, 4, 4, 4]), '[1,2,3,4]');
+console.log(run([1, 1, 1, 1, 1, 1]), '[1]');
