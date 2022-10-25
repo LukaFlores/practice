@@ -1,0 +1,54 @@
+//PROGRAM 5: Start And Stop!
+//Write an HLA Assembly language program that prompts for two specific int8 values named start and stop and then displays a repeated digit pattern starting with that number. The repeated digit pattern should show all the numbers beginning with the start value and then adding 1, 2, 3, 4, ... to this value until you hit a number greater than the stop value.  Shown below is a sample program dialogue.
+// Gimme a decimal value to use as a start: 6
+// Gimme a decimal value to use as a stop: 78
+// Here's your answer: 6_7_9_12_16_21_27_34_42_51_61_72_84
+//
+// Gimme a decimal value to use as a start: 8
+// Gimme a decimal value to use as a stop: 31
+// Here's your number: 8_9_11_14_18_23_29_36
+// (Hint: The digit pattern is too large to store into any datatype we have learned to date so I am expecting that you will use a loop to print individual digits, rather than store the complete number in a variable.)
+//---------------------------------------------------------------------
+// File: startandstop.hla
+
+program startandstop;
+#include( "stdlib.hhf" );
+static
+
+
+iStartingValue : int32 := 0; 
+iEndingValue : int32 := 0; 
+
+begin startandstop;
+
+stdout.put("Gimme a decimal value to use as a start:" );
+stdin.get(iStartingValue);
+mov(iStartingValue, EAX);
+
+stdout.put("Gimme a decimal value to use as a stop:" );
+stdin.get(iEndingValue);
+mov(iEndingValue, EBX);
+
+stdout.put("Here's your number: ");
+
+mov(1, ECX);
+
+WhileLp:
+WhileLpTermination:
+
+add(ECX, EAX);
+
+stdout.puti32(EAX);
+
+cmp( EAX, EBX ); 
+jg WhileLpDone;
+stdout.put("_");
+
+WhileLpBody:
+inc(ECX); 
+
+jmp WhileLp;
+WhileLpDone:
+
+end startandstop;
+

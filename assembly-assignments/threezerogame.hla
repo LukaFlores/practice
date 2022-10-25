@@ -1,0 +1,106 @@
+// PROGRAM 6: Three Zero Game
+// Write a program that reads a number.  Then by subtracting off a three and tens, determine if that value ends in a zero or a three.  Three such numbers in a row wins the game!
+// 
+// Shown below are sample program dialogues to help you build your program
+// Gimme a number: 20
+// It ends in zero!
+// Keep going...
+// Gimme a number: 53
+// It ends in three!
+// Keep going...
+// Gimme a number: 41
+// Sorry Charlie!  You lose the game!
+// 
+// 
+// Gimme a number: 50
+// It ends in zero!
+// Keep going...
+// Gimme a number: 23
+// It ends in three!
+// Keep going...
+// Gimme a number: 70
+// It ends in zero!
+// You Win The Game!
+// 
+// 
+// Gimme a number: 51
+// Sorry Charlie!  You lose The Game!
+// 
+// 
+// (Hint: This program is pretty complex with many different conditions to keep track of. I would recommend you write it first in C or Visual Basic and then translate your lines of code, one-by-one, into a assembly statements, just like our good friend mr. compiler does)
+// 
+// (Hint: Since we don't really know how to do much math in Assembly yet, I am assuming you will loop down to zero.  If you hit exactly zero after taking off enough ten values or a single three plus enough ten values, you know you have a value ending in either three or zero)
+//---------------------------------------------------------------------
+
+// File: threezerogame.hla
+program threezerogame;
+#include( "stdlib.hhf" );
+static
+
+I : int8 := 0; 
+iDataValue : int32 := 0; 
+
+begin threezerogame;
+
+ForLp:
+InitializeForLp: // I = 0
+mov( 0, I );
+ForLpTerminationTest: 
+cmp( I, 3 );
+jnl ForLpDone;
+ForLpBody: 
+
+stdout.put("Gimme a number:" );
+stdin.get(iDataValue);
+mov(iDataValue, EAX);
+
+DoWhileLp:
+DoWhileLpBody:
+
+sub(10, EAX);
+
+DoWhileLpTermination:
+
+cmp(EAX, 10);
+jl DoWhileLpDone; 
+
+jmp DoWhileLpBody; // continue looping
+DoWhileLpDone:
+
+cmp(EAX, 3);
+je CompleteThree;
+
+cmp(EAX, 0);
+je CompleteZero;
+
+jmp Loser;
+
+
+CompleteThree:
+stdout.put("It ends in three!", nl);
+jmp ForLpIncrement;
+
+CompleteZero:
+stdout.put("It ends in zero!", nl);
+
+ForLpIncrement:
+inc( I );
+
+cmp(I, 3);
+je ForLpDone;
+stdout.put("Keep going...", nl);
+
+jmp ForLpTerminationTest;
+ForLpDone:
+
+Winner:
+stdout.put("You win the Game");
+jmp EndGame;
+
+
+Loser: 
+stdout.put("Sorry Charlie!  You lose the game!");
+
+EndGame:
+
+end threezerogame;

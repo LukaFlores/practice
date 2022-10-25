@@ -1,0 +1,84 @@
+// PROGRAM 4: Double Table
+// Using the ROL instruction to perform multiplication, write a program to produce a double table.  This table should be built from a single int8 value provided by the user and print 3 rows from the starting value, each offset by one from the starting value. In that column, the pattern of doubled numbers should be calculated by ROL instructions.  For example, the following output should be produced when the user inputs the starting value 4:
+// 
+// Gimme a starting value: 4
+// Double Table
+// 4:  8 16 32
+// 5: 10 20 40
+// 6: 12 24 48
+// 
+// For example, the following output should be produced when the user inputs the starting value 12:
+// 
+// Gimme a starting value: 12
+// Double Table
+// 12: 24 48 96
+// 13: 26 52 104
+// 14: 28 56 112
+// 
+// (Note: To receive full credit, you must use ROL to solve this problem.)  
+// (Hint: Again, please don't worry too much about the spacing in the table.  As with the prior week's assignment, the goal is to practice working with HLA...
+//---------------------------------------------------------------------
+
+
+// File: doubletable.hla
+program doubletable;
+#include( "stdlib.hhf" );
+static
+
+iDataValue : int8 := 0; // the value to inspect
+begin doubletable;
+
+// Prompt the user
+stdout.put( "Please provide a value to inspect: " );
+stdin.get( iDataValue );
+
+mov(iDataValue, DH);
+
+// First Row
+
+stdout.puti8(DH);
+stdout.put(": ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ", nl);
+ror(3,DH);
+
+// Second Row
+
+add(1,DH);
+stdout.puti8(DH);
+stdout.put(": ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ", nl);
+ror(3,DH);
+
+// Third Row
+add(1,DH);
+stdout.puti8(DH);
+stdout.put(": ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ");
+rol(1,DH);
+stdout.puti8(DH);
+stdout.put(" ", nl);
+
+
+end doubletable;
+

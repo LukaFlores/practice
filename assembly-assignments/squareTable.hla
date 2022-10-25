@@ -1,0 +1,111 @@
+//PROGRAM 2: Square Table
+//Write a program to produce a number table as described here. This table should be built from a single integer value provided by the user. The program will display a square 5X5 of various numbers.  The entered number should appear along the edge of the table.  Every other spot inside the box should also be filled with a number.  Those excess numbers should start with one bigger than the entered number and increment by one for every additional number used.
+//
+//For example, the following output should be produced when the user inputs the starting value 15: 
+//
+//Gimme a starting value: 15
+//15 15 15 15 15
+//15 16 17 18 15
+//15 19 20 21 15
+//15 22 23 24 15
+//15 15 15 15 15
+//
+//And here is the output that would be produced when the user inputs the starting value 20:
+//
+//Gimme a starting value: 20
+//20 20 20 20 20
+//20 21 22 23 20
+//20 24 25 26 20
+//20 27 28 29 20
+//20 20 20 20 20
+//
+//---------------------------------------------------------------------
+
+// File: squareTable.hla
+program squareTable;
+#include( "stdlib.hhf" );
+
+static
+iStartingValue : int32 := 0; // the value to make square out of
+
+begin squareTable;
+
+// Prompt the user
+stdout.put( "Gimme a starting value: " );
+stdin.get( iStartingValue );
+
+// get the values into the register 
+mov( iStartingValue, EAX ); // Starting Value into EAX
+
+
+// Print square
+// First Line
+stdout.put(iStartingValue, " ", iStartingValue, " ", iStartingValue, " " , iStartingValue, " ",
+iStartingValue, nl);
+
+
+// Second Line
+stdout.put(iStartingValue, " " );
+
+add(1, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+add(1, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+add(1, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+sub(3, EAX );
+mov(EAX, iStartingValue);
+
+stdout.put(iStartingValue, " ",nl );
+
+// Third Line
+stdout.put(iStartingValue, " " );
+add(4, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+add(1, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+add(1, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " );
+
+sub(6, EAX );
+mov(EAX, iStartingValue);
+
+stdout.put(iStartingValue, " ", nl );
+
+// Fourth Line
+stdout.put(iStartingValue, " " );
+add(7, EAX );
+mov(EAX, iStartingValue);
+
+stdout.put(iStartingValue, " " );
+add(1, EAX );
+mov(EAX, iStartingValue);
+
+stdout.put(iStartingValue, " " );
+add(1, EAX );
+mov(EAX, iStartingValue);
+
+stdout.put(iStartingValue, " " );
+add(1, EAX );
+mov(EAX, iStartingValue);
+
+sub(10, EAX );
+mov(EAX, iStartingValue);
+stdout.put(iStartingValue, " " , nl);
+
+// Fifth Line
+stdout.put(iStartingValue, " ", iStartingValue, " ", iStartingValue, " " , iStartingValue, " ",
+
+
+end squareTable; 
